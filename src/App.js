@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Sobre from './Sobre';
+import Home from './Home'
 
-function App() {
+function Apresentacao() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20 }}>
+      <h2>Home View</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adip.</p>
     </div>
   );
 }
 
-export default App;
+function NoMatch() {
+  return (
+    <div style={{ padding: 20 }}>
+      <h2>404: Page Not Found</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adip.</p>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <nav style={{ margin: 10 }}>
+          <Link to="/" style={{ padding: 5 }}>
+          Home
+          </Link>
+          <Link to="/apresentacao" style={{ padding: 5 }}>
+          Apresentacao
+          </Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/apresentacao" element={<Apresentacao />} />
+        <Route path="/sobre" element={<Sobre />} />
+        <Route path="*" element={<NoMatch />} />
+      </Routes>
+    </Router>
+  );
+}
